@@ -4,6 +4,9 @@ functions:
     params:
       working_dir: src
       script: |
+        bash -l rvm install ruby-2.3.0
+        bash -l rvm use 2.3.0
+        bash -l gem install bundler
         gem install bundler
         bash -l bundle install
         bash -l bundle exec rake clean
