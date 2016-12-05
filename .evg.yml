@@ -12,7 +12,7 @@ functions:
         bundle install
         bundle exec rake clean
         bundle exec rake compile
-        bundle exec rake spec
+        bundle exec rspec spec/bson/time_spec.rb spec/bson/timestamp_spec.rb spec/bson/integer_spec.rb
 tasks:
   - name: 'build'
     commands:
@@ -33,11 +33,5 @@ buildvariants:
     display_name: RHEL 7.2 Z-Series
     run_on:
       - rhel72-zseries-test
-    tasks:
-      - name: 'build'
-  - name: rhelpower
-    display_name: RHEL 7.1 PowerPC
-    run_on:
-      - rhel71-power8-test
     tasks:
       - name: 'build'
