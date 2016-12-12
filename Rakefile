@@ -49,7 +49,9 @@ end
 
 require_relative "perf/bench"
 
-RSpec::Core::RakeTask.new(:rspec)
+RSpec::Core::RakeTask.new(:rspec) do |t|
+  t.pattern = 'spec/bson/decimal128_spec.rb'
+end
 
 if jruby?
   task :build => [ :clean_all, :compile ] do

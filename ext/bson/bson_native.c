@@ -377,8 +377,8 @@ VALUE rb_bson_byte_buffer_put_cstring(VALUE self, VALUE string)
 VALUE rb_bson_byte_buffer_put_decimal128(VALUE self, VALUE low, VALUE high)
 {
   byte_buffer_t *b;
-  const int64_t low64 = BSON_UINT64_TO_LE(NUM2ULL(low));
-  const int64_t high64 = BSON_UINT64_TO_LE(NUM2ULL(high));
+  const int64_t low64 = NUM2ULL(low);
+  const int64_t high64 = NUM2ULL(high);
 
   TypedData_Get_Struct(self, byte_buffer_t, &rb_byte_buffer_data_type, b);
   ENSURE_BSON_WRITE(b, 8);

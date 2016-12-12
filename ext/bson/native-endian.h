@@ -35,13 +35,14 @@
 # endif
 #endif
 
-#ifndef BSON_BYTE_ORDER
-# if BYTE_ORDER == LITTLE_ENDIAN
-#  define BSON_BYTE_ORDER 1234
-# elif BYTE_ORDER == BIG_ENDIAN
-#  define BSON_BYTE_ORDER 4321
-# endif
-#endif
+/* See a similar check in ruby's sha2.h */
+# ifndef BSON_BYTE_ORDER
+#  ifdef WORDS_BIGENDIAN
+#   define BSON_BYTE_ORDER     BSON_BIG_ENDIAN
+#  else
+#   define BSON_BYTE_ORDER     BSON_LITTLE_ENDIAN
+#  endif
+# endif /* BSON_BYTE_ORDER */
 
 #if defined(__sun)
 # define BSON_UINT16_SWAP_LE_BE(v) __bson_uint16_swap_slow((uint16_t)v)
